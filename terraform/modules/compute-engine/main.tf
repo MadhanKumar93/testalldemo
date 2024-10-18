@@ -3,11 +3,11 @@ resource "google_compute_instance" "workload" {
   for_each = var.vm_instance_names
 
   name         = each.value
-  machine_type = var.vm_machine_type
+  machine_type = var.vm_machine_type[each.key]
   zone         = var.zone
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = var.vm_machine_image[each.key]
       size  = var.vm_disk_size_gb
       type  = "pd-balanced"
     }
