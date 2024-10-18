@@ -10,7 +10,7 @@ firewall_rule_name            = "allow-dev-http-ssh"
 allowed_rules = [
   {
     protocol = "tcp"
-    ports    = ["22", "80"]
+    ports    = ["22", "80","8080","8081"]
   },
   {
     protocol = "icmp"
