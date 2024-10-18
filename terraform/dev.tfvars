@@ -6,7 +6,19 @@ zone                          = "us-central1-a"
 network_name                  = "mk-vpc-dev"
 subnet_name                   = "subnet-dev"
 subnet_cidr_range             = "10.4.0.0/16"
-firewall                      = "allow-http-ssh-dev"
+
+firewall            = "allow-http-ssh-dev"
+allowed_rules = [
+  {
+    protocol = "tcp"
+    ports    = ["22", "80", "3306","5432"]
+  },
+  {
+    protocol = "icmp"
+    ports    = []
+  }
+]
+source_ranges = ["0.0.0.0/0"]
 
 
 
