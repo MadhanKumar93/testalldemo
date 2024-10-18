@@ -2,7 +2,7 @@
 terraform {
   backend "gcs" {
     bucket                      = "mk-terraform-state"
-    #prefix                      = "terraform/state/${terraform.workspace}"
-    impersonate_service_account = "238017122334-compute@developer.gserviceaccount.com"
+    prefix                      = "terraform/state/${terraform.workspace}"
+    #impersonate_service_account = "238017122334-compute@developer.gserviceaccount.com"
   }
 }
