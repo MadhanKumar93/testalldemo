@@ -28,7 +28,6 @@ module "compute-engine" {
   source              = "./modules/compute-engine"
   vm_instance_names   = var.vm_instance_names
   vm_machine_type     = var.vm_machine_type
-  vm_machine_image    = var.vm_machine_image
   zone                = var.zone
   vm_disk_size_gb     = var.vm_disk_size_gb
   network_name        = module.network.network_name

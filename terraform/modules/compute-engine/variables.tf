@@ -5,13 +5,7 @@ variable "vm_instance_names" {
 
 
 variable "vm_machine_type" {
-  description = "Map of VM instance names to their machine types."
-  type        = map(string)
-}
-
-variable "vm_machine_image" {
-  description = "Map of VM instance names to their machine images."
-  type        = map(string)
+  description = "The machine type for the Compute Engine instance"
 }
 
 variable "zone" {
