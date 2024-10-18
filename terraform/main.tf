@@ -1,3 +1,4 @@
+/*
 terraform {
   required_providers {
     google = {
@@ -12,7 +13,7 @@ provider "google" {
   region  = var.region
   zone    = var.zone  
 }
-
+*/
 
 module "network" {
   source            = "./modules/network"
