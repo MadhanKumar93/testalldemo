@@ -30,10 +30,24 @@ variable "subnet_cidr_range" {
   type        = string
 }
 
-variable "firewall" {
-  description = "The name of the firewall rule"
+variable "firewall_rule_name" {
+  description = "Name of the firewall rule"
   type        = string
 }
+
+variable "allowed_rules" {
+  description = "List of allowed protocols and ports"
+  type = list(object({
+    protocol = string
+    ports    = list(string)
+  }))
+}
+
+variable "source_ranges" {
+  description = "Source IP ranges that are allowed"
+  type        = list(string)
+}
+
 
 
 #VM variables
@@ -56,6 +70,6 @@ variable "vm_machine_image" {
 
 variable "vm_disk_size_gb" {
   description = "The disk size in GB for VM instances in the development environment."
-  type        = number
+  type        = map(number)
 }
 

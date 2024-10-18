@@ -1,0 +1,51 @@
+options:
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
+
+substitutions:
+  _ENV: 'dev'  # Set the default environment, can be overridden by a trigger.
+
+steps:
+  # Step to Initialize Terraform
+  - id: 'tf init'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        cd terraform  # Change directory to where Terraform code resides
+        echo "Initialize Terraform"
+        terraform init -upgrade
+
+  # Step to Select Workspace and Plan/Apply Configuration
+  - id: 'tf plan and apply'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        cd terraform
+        echo "Environment: ${_ENV}"
+
+        # Workspace Selection Based on Substitution Variable (_ENV)
+        if [ "${_ENV}" = "dev" ]; then
+          echo "Running Terraform for dev environment"
+          terraform workspace select dev || terraform workspace new dev
+          terraform plan -var-file=dev.tfvars -out=terraform.plan
+          terraform apply -auto-approve terraform.plan
+        elif [ "${_ENV}" = "staging" ]; then
+          echo "Running Terraform for staging environment"
+          terraform workspace select staging || terraform workspace new staging
+          terraform plan -var-file=stg.tfvars -out=terraform.plan
+          terraform apply -auto-approve terraform.plan
+        elif [ "${_ENV}" = "prod" ]; then
+          echo "Running Terraform for production environment"
+          terraform workspace select prod || terraform workspace new prod
+          terraform plan -var-file=prod.tfvars -out=terraform.plan
+          terraform apply -auto-approve terraform.plan
+        else
+          echo "Environment not recognized for Terraform execution."
+          exit 1
+        fi
+
+timeout: '1800s'  # Set the timeout to 30 minutes (1800 seconds)
+

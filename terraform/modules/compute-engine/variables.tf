@@ -20,6 +20,7 @@ variable "zone" {
 
 variable "vm_disk_size_gb" {
   description = "The disk size for the boot disk of the Compute Engine instance in GB"
+  type        = map(string)
 }
 
 variable "network_name" {

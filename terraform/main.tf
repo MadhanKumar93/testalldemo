@@ -21,7 +21,14 @@ module "network" {
   subnet_name       = var.subnet_name
   region            = var.region
   subnet_cidr_range = var.subnet_cidr_range
-  firewall_rule     = var.firewall
+}
+
+module "firewall" {
+  source                  = "./modules/firewall"
+  firewall_rule_name      = var.firewall_rule_name
+  network                 = module.network.network_name
+  allowed_rules           = var.allowed_rules
+  source_ranges           = var.source_ranges
 }
 
 

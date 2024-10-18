@@ -6,7 +6,18 @@ zone                          = "us-central1-a"
 network_name                  = "mk-vpc-dev"
 subnet_name                   = "subnet-dev"
 subnet_cidr_range             = "10.4.0.0/16"
-firewall                      = "allow-http-ssh-dev"
+firewall_rule_name            = "allow-dev-http-ssh"
+allowed_rules = [
+  {
+    protocol = "tcp"
+    ports    = ["22", "80"]
+  },
+  {
+    protocol = "icmp"
+    ports    = []
+  }
+]
+source_ranges = ["0.0.0.0/0"]
 
 
 
@@ -26,5 +37,8 @@ vm_machine_image = {
   workload_2 = "debian-cloud/debian-12"  # Added specific image for workload_2
 }
 
-vm_disk_size_gb               = 10
+vm_disk_size_gb ={
+  workload_1 = 20
+  workload_2 = 20  # Added specific image for workload_2
+}
 

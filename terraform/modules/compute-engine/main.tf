@@ -8,7 +8,7 @@ resource "google_compute_instance" "workload" {
   boot_disk {
     initialize_params {
       image = var.vm_machine_image[each.key]
-      size  = var.vm_disk_size_gb
+      size  = var.vm_disk_size_gb[each.key]
       type  = "pd-balanced"
     }
   }
