@@ -11,7 +11,6 @@ resource "google_compute_subnetwork" "subnet-infra" {
   private_ip_google_access = true
 }
 
-/*
 resource "google_compute_firewall" "allow-http-ssh" {
   name                     = var.firewall_rule
   network                  = google_compute_network.vpc-infra.name
@@ -27,5 +26,5 @@ resource "google_compute_firewall" "allow-http-ssh" {
 
   source_ranges = ["0.0.0.0/0"]
 }
-*/
+
 
