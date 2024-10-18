@@ -29,12 +29,12 @@ variable "subnet_cidr_range" {
   description = "The IP range for the subnet"
   type        = string
 }
-
+/*
 variable "firewall" {
   description = "The name of the firewall rule"
   type        = string
 }
-
+*/
 
 #VM variables
 
