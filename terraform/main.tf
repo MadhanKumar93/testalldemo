@@ -22,8 +22,8 @@ module "network" {
   region            = var.region
   subnet_cidr_range = var.subnet_cidr_range
   firewall_rule     = var.firewall
-  #allowed_rules           = var.allowed_rules
-  #source_ranges           = var.source_ranges
+  allowed_rules           = var.allowed_rules
+  source_ranges           = var.source_ranges
 
 }
 

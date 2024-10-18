@@ -21,7 +21,7 @@ variable "firewall_rule" {
   type        = string
 }
 
-/*
+
 variable "allowed_rules" {
   description = "List of allowed protocols and ports"
   type = list(object({
@@ -34,5 +34,5 @@ variable "source_ranges" {
   description = "Source IP ranges that are allowed"
   type        = list(string)
 }
-*/
+
 

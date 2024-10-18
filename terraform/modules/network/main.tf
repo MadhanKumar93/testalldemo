@@ -16,16 +16,15 @@ resource "google_compute_firewall" "allow-http-ssh" {
   name                     = var.firewall_rule
   network                  = google_compute_network.vpc-infra.name
 
-  allow {
-    protocol = "icmp"
+  dynamic "allow" {
+    for_each = var.allowed_rules
+    content {
+      protocol = allow.value.protocol
+      ports    = allow.value.ports
+    }
   }
 
-  allow {
-    protocol = "tcp"
-    ports    = ["22", "80", "443"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = var.source_ranges
 }
 
 
