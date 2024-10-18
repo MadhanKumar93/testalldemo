@@ -13,7 +13,3 @@ output "subnet_ip_cidr_range" {
   value       = google_compute_subnetwork.subnet-infra.ip_cidr_range
 }
 
-output "firewall_rule_name" {
-  description = "The name of the firewall rule"
-  value       = google_compute_firewall.allow-http-ssh.name
-}

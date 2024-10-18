@@ -15,8 +15,5 @@ variable "subnet_cidr_range" {
   type        = string
 }
 
-variable "firewall_rule" {
-  description = "The name of the firewall rule"
-  type        = string
-}
+
 
